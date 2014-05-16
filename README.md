@@ -60,13 +60,13 @@
    
    You can find the Setting for this module
    
-   System->COnfiguration->System->OSSCube FPC
+   System->COnfiguration->System->WTC FPC
    -------------------------------------------
    
 	6. Clean Log Data From the Database: 
 	   If you are selecting the yes for Cleaning the log data.Then please go to
    
-       System->COnfiguration->System->Log Cleaning
+       System->Configuration->System->Log Cleaning
        -------------------------------------------
        you can change the settings over here.
 	
