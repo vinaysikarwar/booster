@@ -86,7 +86,7 @@
     11. Clear Cache:  When you have enabled all the settings then for the first time it is required to clear the magento Cache.
    
    
-   Thanks For using this Extension.For more info you can contact me at vinay.sikarwar@osscube.com
+   Thanks For using this Extension.For more info you can contact me at svinay.1987@gmail.com
 	
  
  
