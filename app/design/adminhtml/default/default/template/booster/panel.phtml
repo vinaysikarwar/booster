@@ -1,0 +1,215 @@
+<div id="panelmessages" style="display:none;">
+	<ul class="messages">
+		<li class="success-msg">
+			<ul>
+				<li>
+					<span id="result"></span>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<div class="content-header">
+    <table cellspacing="0" class="grid-header">
+        <tr>
+            <td><h3><?=$this->__('Magento Booster Panel')?></h3></td>
+            <td class="a-right" id="button-save" style="display:none;">
+                <button onclick="boostForm.submit()" class="scalable save" type="button"><span>Save</span></button>
+            </td>
+        </tr>
+    </table>
+</div>
+<?php
+	$data = Mage::getModel('booster/booster')->load(1);
+	$enableCompilation = $data->getEnableCompilation();
+	$enable_cache = $data->getEnableCache();
+	$merge_css_js_files = $data->getMergeCssJsFiles();
+	$enable_full_page_cache = $data->getEnableFullPageCache();
+	$enable_log_cleaning = $data->getEnableLogCleaning();
+	$increase_memory_limit = $data->getIncreaseMemoryLimit();
+	$enable_flat_data = $data->getEnableFlatData();
+	$enable_htaccess = $data->getEnableHtaccess();
+	$cron_index_setting = $data->getCronIndexSetting();
+?>
+<div class="entry-edit">
+    <form id="boost_form" name="boost_form" method="post" action="<?php echo $this->getBoosterActionUrl(); ?>">
+        <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>" />
+        <h4 class="icon-head head-edit-form fieldset-legend"><?=$this->__('Please Select the feature which you want to enable')?></h4>
+        <fieldset id="my-fieldset">
+            <table cellspacing="0" class="form-list">
+				<tr>
+                    <td class="label bold"><?php echo $this->__('Save All Settings at Once')?> </td>
+                    <td class="input-ele">
+						<input type="checkbox" id="save_all" name="save_all" value="1" class="checkbox"/>
+					</td>
+				</tr>
+				<tr><td></td></tr>
+				<tr>
+                    <td class="label"><?php echo $this->__('Backup Database and media Files')?> </td>
+                    <td class="input-ele">
+						<select name="database_backup" id="database_backup" class="select" onChange="submitData('databaseBackup','database_backup')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1"><?php echo $this->__('Yes')?></option>
+							<option value="0" selected="selected"><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+					<td class="label"><span class="required">*<?php echo $this->__('Backup will only work when cache is disable')?></span> </td>
+				</tr>
+                <tr>
+                    <td class="label"><?php echo $this->__('Enable Compilation')?> </td>
+                    <td class="input-ele">
+						<select name="enable_compilation" id="comp" class="select" onChange="submitData('enableCompilation','comp')">
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($enableCompilation) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$enableCompilation) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Enable Cache')?> </td>
+                    <td class="input-ele">
+						<select name="enable_cache" id="cache" class="select" onChange="submitData('enableCache','cache')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($enable_cache) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$enable_cache) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Merge js and css files')?> </td>
+                    <td class="input-ele">
+						<select name="merge_css_js_files" id="merge_css_js_files" class="select" onChange="submitData('mergeCssJsFiles','merge_css_js_files')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($merge_css_js_files) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$merge_css_js_files) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Enable Full page Cache')?> </td>
+                    <td class="input-ele">
+						<select name="enable_full_page_cache" id="enable_full_page_cache" class="select" onChange="submitData('enableFullPageCache','enable_full_page_cache')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($enable_full_page_cache) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$enable_full_page_cache) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Clean Log Data')?> </td>
+                    <td class="input-ele">
+						<select name="enable_log_cleaning" id="enable_log_cleaning" class="select" onChange="submitData('enableLogCleaning','enable_log_cleaning')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($enable_log_cleaning) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$enable_log_cleaning) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Enable Flat data for product and category')?> </td>
+                    <td class="input-ele">
+						<select name="enable_flat_data" id="enable_flat_data" class="select" onChange="submitData('enableFlatData','enable_flat_data')" >
+							<option value=""><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($enable_flat_data) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$enable_flat_data) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Enable Htaccess Gzip, Mod_deflate, Performance Settings')?> </td>
+                    <td class="input-ele">
+						<select name="enable_htaccess" id="enable_htaccess" class="select" onChange="submitData('enableHtaccess','enable_htaccess')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($enable_htaccess) echo 'selected=selected'; ?><?php if($enable_htaccess) echo 'disabled'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if($enable_htaccess) echo 'disabled'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Enable Reindexing as a Cron Job')?> </td>
+                    <td class="input-ele">
+						<select name="cron_index_setting" id="cron_index_setting" class="select" onChange="submitData('cronIndexSetting','cron_index_setting')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" <?php if($cron_index_setting) echo 'selected=selected'; ?>><?php echo $this->__('Yes')?></option>
+							<option value="0" <?php if(!$cron_index_setting) echo 'selected=selected'; ?>><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+					
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Fast Reindex Data')?> </td>
+                    <td class="input-ele">
+						<select name="reindex_data" id="reindex_data" class="select" onChange="submitData('reindexData','reindex_data')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" ><?php echo $this->__('Yes')?></option>
+							<option value="0" selected="selected"><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+					
+				</tr>
+				
+				<tr>
+                    <td class="label"><?php echo $this->__('Clear Cache')?> </td>
+                    <td class="input-ele">
+						<select name="clear_cache" id="clear_cache" class="select" onChange="submitData('clearCache','clear_cache')" >
+							<option disabled><?php echo $this->__('Select option')?></option>
+							<option value="1" ><?php echo $this->__('Yes')?></option>
+							<option value="0" selected="selected"><?php echo $this->__('No')?></option>
+						</select>
+					</td>
+					
+				</tr>
+				
+            </table>
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript">
+    var boostForm = new varienForm('boost_form');
+</script>
+
+<script type="text/javascript">
+function submitData(func,id)
+{
+	var url = "<?php echo $this->getBaseUrl(); ?>booster/adminhtml_boosterpanel/" + func + "";
+	var val = document.getElementById(id).value;
+	var cbControl = $("save_all").checked;
+	if(!cbControl)
+	{
+		document.getElementById('button-save').style.display="none";
+       new Ajax.Request(url, {
+            method:'post'
+            , parameters: {
+				   option: val
+                }
+            , requestHeaders: {Accept: 'application/json'},
+            onSuccess: function(transport) {
+				var msg = transport.responseText;
+				if(msg)
+				{
+					var container = $('result');
+					container.update(msg);
+					var myElement = document.querySelector("#messages");
+					myElement.style.display = "block";
+					document.getElementById('panelmessages').style.display="block";
+				}
+             }
+          });
+	}
+	else
+	{
+		document.getElementById('button-save').style.display="block";
+		
+		
+	}
+}
+
+</script>

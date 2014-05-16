@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <OSSCube_Booster>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>1.0.1</version>
+    </OSSCube_Booster>
+  </modules>
+</config>
